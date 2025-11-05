@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Amazon Scraper</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <h2>Amazon Product Scraper</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Scrape</button>
+  </form>
+
+  {% if product %}
+    <div class="result">
+      <h3>Scraped Result:</h3>
+      <p><strong>Title:</strong> {{ product.title }}</p>
+      <p><strong>Price:</strong> {{ product.price }}</p>
+      <p><strong>Rating:</strong> {{ product.rating }}</p>
+      <a href="/media/scraped_product.csv" download>Download CSV</a>
+    </div>
+  {% endif %}
+  {% if error_message %}
+  <div class="error">{{ error_message }}</div>
+{% endif %}
+
+</body>
+</html>
