@@ -19,7 +19,9 @@
       <p><strong>Title:</strong> {{ product.title }}</p>
       <p><strong>Price:</strong> {{ product.price }}</p>
       <p><strong>Rating:</strong> {{ product.rating }}</p>
-      <a href="/media/scraped_product.csv" download>Download CSV</a>
+      {% if download_link %}
+        <a href="{{ download_link }}" download class="download-btn">Download CSV</a>
+      {% endif %}
     </div>
   {% endif %}
   {% if error_message %}
